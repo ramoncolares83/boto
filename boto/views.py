@@ -7,7 +7,10 @@ import locale
 from decouple import config
 
 # Defina a localização para português brasileiro
-locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
+try:
+    locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
+except locale.Error:
+    locale.setlocale(locale.LC_ALL, '')  # Usa a localidade padrão do sistema
 
 # Função para obter os dados da tendência
 def obter_dados_tendencia():
